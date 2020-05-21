@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceXinfo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-expand-md navbar-dark " >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#" th:href="@{/}">SpaceXinfo</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/history}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/missions}">Missions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/launches}">Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/rockets}">Rockets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/cores}">Cores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/capsules}">Capsules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/ships}">Ships</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Stages</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Wiki</th>
+                    <th scope="col">More info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="rocket: ${rockets}">
+                    <td th:text="${rocket.rocket_name}">WIP</td>
+                    <td th:text="${rocket.rocket_id}">WIP</td>
+                    <td th:text="${rocket.stages}">WIP</td>
+                    <td th:text="${rocket.company}">WIP</td>
+                    <td th:text="${rocket.country}">WIP</td>
+                    <td>
+                        <a class="btn btn-secondary d-block" href="#" th:href="@{${rocket.wikipedia}}">
+                                <i class="fab fa-wikipedia-w"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info d-block" href="#"  th:href="@{/rocket(rocket_id=${rocket.rocket_id})}">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

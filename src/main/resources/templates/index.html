@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceXinfo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-expand-md navbar-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#" th:href="@{/}">SpaceXinfo</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/history}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/missions}">Missions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/launches}">Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/rockets}">Rockets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/cores}">Cores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/capsules}">Capsules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/ships}">Ships</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="shadow-lg bg-grey rounded">
+        <img src="/img/jumbo-back.jpg" class="img-fluid" alt="Logo"/>
+        <p class="p-3 mb-2" th:text="${info.summary}"></p>
+        <div class="row justify-content-center" >
+
+            <div class="col-5 col-auto " >
+                <table class="table table-responsive my-table2">
+                    <tbody>
+                    <tr>
+                        <td>Founder</td>
+                        <td  th:text="${info.founder}"></td>
+                    </tr>
+                    <tr>
+                        <td>Founded</td>
+                        <td  th:text="${info.founded}"></td>
+                    </tr>
+                    <tr>
+                        <td>Employees</td>
+                        <td  th:text="${info.employees}"></td>
+                    </tr>
+                    <tr>
+                        <td>Vehicles</td>
+                        <td  th:text="${info.vehicles}"></td>
+                    </tr>
+                    <tr>
+                        <td>Launch sites</td>
+                        <td  th:text="${info.launchSites}"></td>
+                    </tr>
+                    <tr>
+                        <td>Test sites</td>
+                        <td  th:text="${info.testSites}"></td>
+                    </tr>
+                    <tr>
+                        <td>CEO</td>
+                        <td  th:text="${info.ceo}"></td>
+                    </tr>
+                    <tr>
+                        <td>CTO</td>
+                        <td  th:text="${info.cto}"></td>
+                    </tr>
+                    <tr>
+                        <td>COO</td>
+                        <td  th:text="${info.coo}"></td>
+                    </tr>
+                    <tr>
+                        <td>CTO propulsion</td>
+                        <td  th:text="${info.ctoPropulsion}"></td>
+                    </tr>
+                    <tr>
+                        <td>Valuation</td>
+                        <td  th:inline="text">[[${info.valuation}]]$</td>
+                    </tr>
+                    <tr>
+                        <td>Headquarters</td>
+                        <td  th:inline="text">[[${info.headquarters.address}]]<br>[[${info.headquarters.city}]]<br>[[${info.headquarters.state}]]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row justify-content-center my-row p-3" >
+            <a class="my-a" href="#" th:href="@{${info.links.website}}">
+                <i class="fas fa-globe"></i>
+            </a>
+            <a class="my-a" href="#" th:href="@{${info.links.twitter}}">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a class="my-a" href="#" th:href="@{${info.links.flickr}}">
+                <i class="fab fa-flickr"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

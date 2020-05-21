@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceXinfo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-expand-md navbar-dark " >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#" th:href="@{/}">SpaceXinfo</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/history}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/missions}">Missions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/launches}">Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/rockets}">Rockets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/cores}">Cores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/capsules}">Capsules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/ships}">Ships</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Mission name</th>
+                    <th scope="col">Mission id</th>
+                    <th scope="col">Manufacturers</th>
+                    <th scope="col">Payloads</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Links</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="mission: ${missions}" >
+                    <td th:text="${mission.mission_name}">WIP</td>
+                    <td th:text="${mission.mission_id}">WIP</td>
+                    <td th:text="${mission.manufacturers}">WIP</td>
+                    <td >
+                        <table class="my-table">
+                            <tr th:each="payload: ${mission.payload_ids}" >
+                            <td th:text="${payload}"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td th:text="${mission.description}">WIP</td>
+                    <td>
+                        <a class="btn btn-secondary d-block" href="#" th:href="@{${mission.twitter}}">
+
+                                <i class="fab fa-twitter"></i>
+
+                        </a>
+                        <br>
+                        <a class="btn btn-secondary d-block" href="#" th:href="@{${mission.wikipedia}}">
+
+                                <i class="fab fa-wikipedia-w"></i>
+
+                        </a>
+                        <br>
+                        <a class="btn btn-secondary d-block" href="#" th:href="@{${mission.website}}">
+
+                                <i class="fas fa-globe"></i>
+
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

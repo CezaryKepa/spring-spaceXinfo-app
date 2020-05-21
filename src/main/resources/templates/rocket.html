@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceXinfo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-expand-md navbar-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#" th:href="@{/}">SpaceXinfo</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/history}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/missions}">Missions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/launches}">Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/rockets}">Rockets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/cores}">Cores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/capsules}">Capsules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/ships}">Ships</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+
+    <div class="col-lg-8 offset-lg-2">
+        <img th:src="@{${rocket.imgUrl}}" class="img-fluid" alt="Obrazek"/>
+        <div class="shadow-lg p-3 mb-5 bg-grey rounded">
+            <h3 class="font-weight-bold" th:text="${rocket.rocketName}">wip</h3>
+            <p th:text="${rocket.description}">wip</p>
+            <h5>Cost per launch</h5>
+            <p th:inline="text">[[${rocket.costPerLaunch}]] $</p>
+            <h5>Size</h5>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Height</th>
+                            <th scope="col">Diameter</th>
+                            <th scope="col">Mass</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:inline="text">[[${rocket.height.meters}]] m<br>[[${rocket.height.feet}]] ft</td>
+                            <td th:inline="text">[[${rocket.diameter.meters}]] m<br>[[${rocket.diameter.feet}]] ft</td>
+                            <td th:inline="text">[[${rocket.mass.kg}]] kg<br>[[${rocket.mass.lb}]] lb</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h5>Payload weights</h5>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="payload: ${rocket.payloadWeights}">
+                            <td th:inline="text">[[${payload.name}]] ([[${payload.id}]])</td>
+                            <td th:inline="text">[[${payload.kg}]] kg</td>
+                            <td th:inline="text">[[${payload.lb}]] lb</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h5>Stages</h5>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="6">First stage</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Reusable</th>
+                            <th scope="col">Engines</th>
+                            <th scope="col">Fuel amount(tons)</th>
+                            <th scope="col">Burn time(sec)</th>
+                            <th scope="col">Thrust sea level</th>
+                            <th scope="col">Thrust vacuum</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="first_stage: ${rocket.firstStage}">
+                            <td th:inline="text">[[${first_stage.reusable}]]</td>
+                            <td th:inline="text">[[${first_stage.engines}]]</td>
+                            <td th:inline="text">[[${first_stage.fuelAmountTons}]]</td>
+                            <td th:inline="text">[[${first_stage.burnTimeSec}]]</td>
+                            <td th:inline="text">[[${first_stage.thrustSeaLevel.KN}]] KN<br>[[${first_stage.thrustSeaLevel.lbf}]]
+                                lbf
+                            </td>
+                            <td th:inline="text">[[${first_stage.thrustVacuum.KN}]] KN<br>[[${first_stage.thrustVacuum.lbf}]]
+                                lbf
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="4">Second stage</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Engines</th>
+                            <th scope="col">Fuel amount(tons)</th>
+                            <th scope="col">Burn time(sec)</th>
+                            <th scope="col">Thrust</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="second_stage: ${rocket.secondStage}">
+                            <td th:inline="text">[[${second_stage.engines}]]</td>
+                            <td th:inline="text">[[${second_stage.fuelAmountTons}]]</td>
+                            <td th:inline="text">[[${second_stage.burnTimeSec}]]</td>
+                            <td th:inline="text">[[${second_stage.thrust.KN}]] KN<br>[[${second_stage.thrust.lbf}]] lbf
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h5>Engines</h5>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Number</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Version</th>
+                            <th scope="col">Propellants</th>
+                            <th scope="col">Thrust sea level</th>
+                            <th scope="col">Thrust vacuum</th>
+                            <th scope="col">Thrust to weight</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:inline="text">[[${rocket.engines.number}]]</td>
+                            <td th:inline="text">[[${rocket.engines.type}]]</td>
+                            <td th:inline="text">[[${rocket.engines.version}]]</td>
+                            <td th:inline="text">[[${rocket.engines.propellant1}]],<br>[[${rocket.engines.propellant2}]]</td>
+                            <td th:inline="text">[[${rocket.engines.thrustSeaLevel.KN}]] KN<br>[[${rocket.engines.thrustSeaLevel.lbf}]] lbf</td>
+                            <td th:inline="text">[[${rocket.engines.thrustVacuum.KN}]] KN<br>[[${rocket.engines.thrustVacuum.lbf}]] lbf</td>
+                            <td th:inline="text">[[${rocket.engines.thrustToWeight}]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

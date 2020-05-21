@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceXinfo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-expand-md navbar-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#" th:href="@{/}">SpaceXinfo</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/history}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/missions}">Missions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/launches}">Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/rockets}">Rockets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/cores}">Cores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/capsules}">Capsules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/ships}">Ships</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Ship name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Missions</th>
+                    <th scope="col">Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ship: ${ships}">
+                    <td th:text="${ship.ship_name}">WIP</td>
+                    <td th:text="${ship.ship_type}">WIP</td>
+                    <td th:text="${ship.roles}">WIP</td>
+                    <td th:text="${ship.active}">WIP</td>
+                    <td>
+                        <table class="my-table">
+                            <tr th:each="mission: ${ship.missions}">
+                                <td th:inline="text">[[${mission.name}]]
+                                </td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="wrapper" th:if="${ship.image != null}">
+                            <a class="btn btn-secondary d-block" href="#" th:href="@{${ship.image}}">
+                                <i class="fas fa-images"></i>
+                            </a>
+                            <br>
+                        </div>
+
+                        <div class="wrapper" th:if="${ship.url != null}">
+                            <a class="btn btn-secondary d-block" href="#" th:href="@{${ship.url}}">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            <br>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
